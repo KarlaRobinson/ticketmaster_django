@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from TicketMasterApp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.welcome, name='home'), # root
+    url(r'exit$', views.bye, name='exit'), # /exit
+    # url(r'tickets$', views.bye, name='exit'), # /exit
 ]

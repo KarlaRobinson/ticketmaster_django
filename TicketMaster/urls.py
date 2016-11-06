@@ -19,7 +19,10 @@ from TicketMasterApp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.welcome, name='home'), # root
-    url(r'exit$', views.bye, name='exit'), # /exit
-    # url(r'tickets$', views.bye, name='exit'), # /exit
+    url(r'^$', views.home, name='start'), # root
+    url(r'^home$', views.home, name='home'), # root
+    url(r'^login$', views.login, name='login'),
+    url(r'^agentes$', views.agentes, name='agentes'),
+    url(r'^tickets$', views.tickets, name='tickets'),
+    url(r'^ventas$', views.ventas, name='ventas'),
 ]

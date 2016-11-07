@@ -13,3 +13,4 @@ class Agente(models.Model):
 class Ticket(models.Model):
 	OPCIONES= (('a', 'Abierto'), ('p', 'Pendiente'), ('c', 'Cerrado'))
 	ticket_estado = models.CharField(max_length=200, choices=OPCIONES, default='a')
+	agente = models.ForeignKey(Agente, on_delete=models.CASCADE)

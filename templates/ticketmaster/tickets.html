@@ -1,11 +1,24 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-	<h3>Tickets de {{agente}}:</h3>
-	<ol>
-		{% for ticket in tickets %}
-		    <li>
-		        {{ ticket.ticket_estado }}
-		    </li>
-		{% endfor %}
-	</ol>
+	<h4>Bienvenido {{agente}}</h4>
+	<ul>
+		{% if tickets %}
+			{% for ticket in tickets %}
+			    <li>
+			        ticket: {{ ticket.id }}, {{ ticket.ticket_estado }}
+			        <form method="post" action="estado">
+			        	<select name="estado">
+			        	  <option>Abierto</option>
+			        	  <option>Pendiente</option>
+			        	  <option>Cerrado</option>
+			        	</select>
+			        	<input type="hidden" name="id" value={{ ticket.id  }}>
+			        	<input type="submit" value="Guardar">
+			        </form>
+			    </li>
+			{% endfor %}
+		{% else %}
+			<li>Tickets que te asignan apareceran aca.</li>
+		{% endif %}
+	</ul>
 {% endblock %}

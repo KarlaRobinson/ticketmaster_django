@@ -1,18 +1,31 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
+	<form method="get" action="ventas">
+		<input type="submit" value="Atras">
+	</form>
 	<h4>Agentes:</h4>
 	<ul>
 		{% for agente in agentes %}
 		    <li>
-		    {{ agente.agente_email }}, id: {{agente.id}}, tickets: {{ agente.ticket_set }}
+		    {{ agente.agente_email }}, id: {{agente.id}}, tickets: {{ tickets }}
 		    </li>
 		{% endfor %}
 	</ul>
-	<p>Asignar Tickets:</p>
+	<h4>Asignar Tickets:</h4>
 	<form action="new_ticket" method="post">
 		<!-- {% csrf_token %} -->
-		<input type="text" placeholder="Numero de tickets" name="num">
-		<input type="text" placeholder="Agente id" name="id">
+		<select name="num">
+			<option selected disabled>Numero de Tickets</option>
+			<option value=1>1 ticket</option>
+			<option value=2>2 tickets</option>
+			<option valuie=3>3 tickets</option>
+		</select>
+		<select name="id">
+			<option selected disabled>Agente_id</option>
+			{% for agente in agentes %}
+				<option value={{ agente.id }}>Agente_{{ agente.id }}</option>
+			{% endfor %}
+		</select>
 		<input type="submit" value="Asignar">
 	</form>
 {% endblock %}

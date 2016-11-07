@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+
 from django.contrib import admin
+
 from TicketMasterApp import views
 
 urlpatterns = [
@@ -27,4 +29,5 @@ urlpatterns = [
     url(r'^ventas$', views.ventas, name='ventas'),
     url(r'^new_ticket$', views.new_ticket, name='new_ticket'),
     url(r'^estado$', views.estado, name='estado'),
+    url(r'^logout$', views.logout, name='logout'),
 ]

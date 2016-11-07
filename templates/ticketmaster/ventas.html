@@ -1,16 +1,21 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-	<h4>Tickets aun en venta:</h4>
-	{% if tickets %}
-		{% for ticket in tickets %}
-		    <li>
-		        ticket: {{ ticket.id }}, {{ ticket.ticket_estado }}
-		    </li>
-		{% endfor %}
-	{% else %}
-		<li>No hay tickets abiertos en este momento. Ver agentes para asignar tickets.</li>
-	{% endif %}
 	<form method="get" action="agentes">
 		<input type="submit" value="Ver Agentes">
+	</form>
+	{% if tickets %}
+	<h4>Tickets abiertos y pendientes:</h4>
+		<ul>
+			{% for ticket in tickets %}
+			    <li>
+			        ticket: {{ ticket.id }}, {{ ticket.ticket_estado }}
+			    </li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<li>No hay tickets en este momento. Ver agentes para asignar tickets.</li>
+	{% endif %}
+	<form method="get" action="logout">
+		<input type="submit" value="Logout">
 	</form>
 {% endblock %}

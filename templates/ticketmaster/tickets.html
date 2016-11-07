@@ -1,6 +1,6 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-	<h4>Bienvenido {{agente}}</h4>
+	<h4>Bienvenido {{agente.agente_email}}</h4>
 	<ul>
 		{% if tickets %}
 			{% for ticket in tickets %}
@@ -8,9 +8,9 @@
 			        ticket: {{ ticket.id }}, {{ ticket.ticket_estado }}
 			        <form method="post" action="estado">
 			        	<select name="estado">
-			        	  <option>Abierto</option>
-			        	  <option>Pendiente</option>
-			        	  <option>Cerrado</option>
+			        	  <option>abierto</option>
+			        	  <option>pendiente</option>
+			        	  <option>cerrado</option>
 			        	</select>
 			        	<input type="hidden" name="id" value={{ ticket.id  }}>
 			        	<input type="submit" value="Guardar">
@@ -21,4 +21,7 @@
 			<li>Tickets que te asignan apareceran aca.</li>
 		{% endif %}
 	</ul>
+	<form method="get" action="logout">
+		<input type="submit" value="Logout">
+	</form>
 {% endblock %}

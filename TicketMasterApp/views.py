@@ -39,6 +39,8 @@ def auth_supervisor(request, email, password):
 	except ObjectDoesNotExist:
 		return False
 
+# al login el id y la clase (supervisor, o agente) es guardada en session
+# logged_in regresa la clase o False si no hay nadie logeado
 def logged_in(request,):
 	try:
 		type = request.session['type']
@@ -46,16 +48,18 @@ def logged_in(request,):
 	except:
 		return False
 
+# agentes debe de mostrar una lista de todos los agentes con la cantidad de boletos que tienen
 def agentes(request,):
 	if logged_in(request) == "supervisor":
 		agentes_index = Agente.objects.all()
-		tickets = len(Agente.objects.get(id=1).ticket_set.all())
+		num_tickets = len(Agente.objects.get(id=1).ticket_set.all())
 		return render_to_response("ticketmaster/agentes.html",
 								   {"agentes" : agentes_index,
-								   "tickets" : tickets})
+								   "num_tickets" : num_tickets})
 	else:
 		return render_to_response("ticketmaster/login.html")
 
+# tickets muestra una lista de todos los tickets del usuario logged_in
 def tickets(request,):
 	email = request.POST.get("email", "")
 	password = request.POST.get("password", "")
@@ -68,6 +72,7 @@ def tickets(request,):
 	else:
 		return render_to_response("ticketmaster/login.html")
 
+# ventas muestra al supervisor todos los tickets de todos los agentes
 def ventas(request,):
 	email = request.POST.get("email", "")
 	password = request.POST.get("password", "")
@@ -78,6 +83,7 @@ def ventas(request,):
 	else:
 		return render_to_response("ticketmaster/login.html")
 
+# new_ticket crea una instancia Ticket y lo asigna al agente indicado
 # @ensure_csrf_cookie
 def new_ticket(request,):
 	num = request.POST.get("num", "")
@@ -91,6 +97,7 @@ def new_ticket(request,):
 							   {"agentes" : agentes_index,
 							   "tickets" : tickets})
 
+# estado cambiar el estado de un ticket y borrar el ticket con estado cerrado
 def estado(request,):
 	estado = request.POST.get("estado", "")
 	ticket_id = request.POST.get("id", "")
@@ -106,6 +113,7 @@ def estado(request,):
 							   {"tickets" : tickets_index,
 							   "agente" : agente})
 
+# al logout el session se limpia
 def logout(request,):
 	request.session.clear()
 	return render_to_response("ticketmaster/home.html")

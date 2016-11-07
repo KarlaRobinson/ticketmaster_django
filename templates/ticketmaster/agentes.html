@@ -1,6 +1,14 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-<p>agentes</p>
-{{ Testing }}
-{{ HelloHello }}
+	<h3>Agentes:</he>
+	<ol>
+		{% for agente in agentes %}
+		    <li>
+		        {{ agente.agente_email }}
+		        <form>
+		        	<input type="submit" value="tickets">
+		        </form>
+		    </li>
+		{% endfor %}
+	</ol>
 {% endblock %}

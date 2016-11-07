@@ -1,0 +1,18 @@
+[
+  {
+    "model": "TicketMasterApp.Supervisor",
+    "pk": 1,
+    "fields": {
+      "supervisor_email": "rodriguez@ticketmaster.com",
+      "supervisor_password": "Rod123"
+    }
+  },
+  {
+    "model": "TicketMasterApp.Agente",
+    "pk": 1,
+    "fields": {
+      "agente_email": "juan@gmail.com",
+      "agente_password": "Juan123"
+    }
+  }
+]

@@ -1,4 +1,11 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-<p>Tickets<p>
+	<h3>Tickets de {{agente}}:</h3>
+	<ol>
+		{% for ticket in tickets %}
+		    <li>
+		        {{ ticket.ticket_estado }}
+		    </li>
+		{% endfor %}
+	</ol>
 {% endblock %}

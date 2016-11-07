@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^agentes$', views.agentes, name='agentes'),
     url(r'^tickets$', views.tickets, name='tickets'),
     url(r'^ventas$', views.ventas, name='ventas'),
+    # url(r'^places/(?P<name>\w+)/$', views.ventas, name='ventas'),
 ]

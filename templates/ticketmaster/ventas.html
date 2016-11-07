@@ -1,4 +1,8 @@
 {% extends "ticketmaster/base.html" %}
 {% block content %}
-<p>ventas</p>
+	<p>ventas</p>
+	{{ tickets }}
+	<form method="get" action="agentes">
+		<input type="submit" value="Ver Agentes">
+	</form>
 {% endblock %}
